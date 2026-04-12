@@ -1,0 +1,33 @@
+type Ticket = {
+  id: number;
+  title: string;
+  status: 'open' | 'closed' | 'progressed';
+};
+
+type TicketCardProps = {
+  ticket: Ticket;
+  onAdvancedStatus: (id: number) => void;
+};
+
+function TicketCard({ ticket, onAdvancedStatus }: TicketCardProps) {
+  return (
+    <div
+      style={{
+        marginBottom: '20px',
+        padding: '12px',
+        border: '1px solid #ccc',
+        borderRadius: '8px',
+      }}
+    >
+      <h2>{ticket.title}</h2>
+      <p>ID: {ticket.id}</p>
+      <p>Status: {ticket.status}</p>
+
+      <button onClick={() => onAdvancedStatus(ticket.id)}>
+        advance status
+      </button>
+    </div>
+  );
+}
+
+export default TicketCard;
