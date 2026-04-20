@@ -7,19 +7,30 @@ type Ticket = {
   status: 'open' | 'progressed' | 'closed';
 };
 
-const initialTickets: Ticket[] = [
-  { id: 1, title: 'Login Bug', status: 'open' },
-  { id: 2, title: 'UI bugged', status: 'progressed' },
-];
+// const initialTickets: Ticket[] = [
+//   { id: 1, title: 'Login Bug', status: 'open' },
+//   { id: 2, title: 'UI bugged', status: 'progressed' },
+// ];
 
 function App() {
-  const [tickets, setTickets] = useState<Ticket[]>(() => {
-    const savedTickets = localStorage.getItem('tickets');
+  const [tickets, setTickets] = useState<Ticket[]>([]);
 
-    if (savedTickets) {
-      return JSON.parse(savedTickets);
-    }
-  });
+  useEffect(() => {
+    fetch('http://localhost:3000/tickets')
+      .then((res) => res.json())
+      .then((data) => {
+        setTickets(data);
+      });
+  }, []);
+  // nobackend shenanigans
+  // const [tickets, setTickets] = useState<Ticket[]>(() => {
+  //   const savedTickets = localStorage.getItem('tickets');
+
+  //   if (savedTickets) {
+  //     return JSON.parse(savedTickets);
+  //   }
+  //   return initialTickets;
+  //});
 
   function addTicket() {
     const newTicket: Ticket = {
@@ -50,6 +61,10 @@ function App() {
     });
     setTickets(updatedTickets);
   }
+  //no backend shenanigans
+  // useEffect(() => {
+  //   localStorage.setItem('tickets', JSON.stringify(tickets));
+  // }, [tickets]);
   return (
     <div style={{ padding: '20px' }}>
       <h1>Tickets</h1>
