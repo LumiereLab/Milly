@@ -6,10 +6,9 @@ type Ticket = {
 
 type TicketCardProps = {
   ticket: Ticket;
-  onAdvancedStatus: (id: number) => void;
 };
 
-function TicketCard({ ticket, onAdvancedStatus }: TicketCardProps) {
+function TicketCard({ ticket }: TicketCardProps) {
   return (
     <div
       style={{
@@ -23,9 +22,9 @@ function TicketCard({ ticket, onAdvancedStatus }: TicketCardProps) {
       <p>ID: {ticket.id}</p>
       <p>Status: {ticket.status}</p>
 
-      <button onClick={() => onAdvancedStatus(ticket.id)}>
+      {/* <button onClick={() => onAdvancedStatus(ticket.id)}>
         advance status
-      </button>
+      </button> */}
     </div>
   );
 }
