@@ -1,19 +1,59 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type SubmitEvent } from 'react';
 import TicketCard from './components/TicketCard';
+
+type Payload = {
+  title: string;
+  status: Ticket['status'];
+};
 
 type Ticket = {
   id: number;
   title: string;
-  status: 'open' | 'progressed' | 'closed';
+  status: TicketStatus;
 };
 
-// const initialTickets: Ticket[] = [
-//   { id: 1, title: 'Login Bug', status: 'open' },
-//   { id: 2, title: 'UI bugged', status: 'progressed' },
-// ];
+type TicketStatus = 'open' | 'progressed' | 'closed';
 
 function App() {
   const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [title, setTitle] = useState('');
+  const [status, setStatus] = useState<TicketStatus>('open');
+  const [errorMessage, setErrorMessage] = useState('');
+  async function addTicket(event: SubmitEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const payload: Payload = {
+      title,
+      status,
+    };
+
+    const response = await fetch('http://localhost:3000/tickets', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+
+      const message = Array.isArray(error.message)
+        ? error.message.join(',')
+        : 'Failed to create ticket';
+
+      setErrorMessage(message);
+      return;
+    }
+
+    const createdTicket: Ticket = await response.json();
+    //return new array with newly created ticket
+    setTickets((previousTickets) => [...previousTickets, createdTicket]);
+    //resets form
+    setTitle('');
+    setStatus('open');
+    setErrorMessage('');
+  }
 
   useEffect(() => {
     fetch('http://localhost:3000/tickets')
@@ -22,76 +62,31 @@ function App() {
         setTickets(data);
       });
   }, []);
-  // nobackend shenanigans
-  // const [tickets, setTickets] = useState<Ticket[]>(() => {
-  //   const savedTickets = localStorage.getItem('tickets');
 
-  //   if (savedTickets) {
-  //     return JSON.parse(savedTickets);
-  //   }
-  //   return initialTickets;
-  //});
-
-  // function addTicket() {
-  //   const newTicket: Ticket = {
-  //     id: tickets.length + 1,
-  //     title: 'new ticket',
-  //     status: 'open',
-  //   };
-  //   setTickets([...tickets, newTicket]);
-  // }
-
-  async function addTicket() {
-    const response = await fetch('http://localhost:3000/tickets', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        title: 'new ticket',
-        status: 'open',
-      }),
-    });
-
-    if (!response.ok) {
-      console.error('failed to create ticket');
-      return;
-    }
-    const createdTicket: Ticket = await response.json();
-
-    setTickets([...tickets, createdTicket]);
-  }
-
-  // function advanceTicketStatus(id: number) {
-  //   const updatedTickets = tickets.map((ticket) => {
-  //     if (ticket.id !== id) {
-  //       return ticket;
-  //     }
-  //     let nextStatus: Ticket['status'];
-
-  //     if (ticket.status === 'open') {
-  //       nextStatus = 'progressed';
-  //     } else if (ticket.status === 'progressed') {
-  //       nextStatus = 'closed';
-  //     } else {
-  //       nextStatus = 'open';
-  //     }
-  //     return {
-  //       ...ticket,
-  //       status: nextStatus,
-  //     };
-  //   });
-  //   setTickets(updatedTickets);
-  // }
-  //no backend shenanigans
-  // useEffect(() => {
-  //   localStorage.setItem('tickets', JSON.stringify(tickets));
-  // }, [tickets]);
   return (
     <div style={{ padding: '20px' }}>
       <h1>Tickets</h1>
 
-      <button onClick={addTicket}>create new Ticket</button>
+      <form onSubmit={addTicket}>
+        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+        <input
+          type="text"
+          placeholder="Ticket title"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
+
+        <select
+          value={status}
+          onChange={(event) => setStatus(event.target.value as TicketStatus)}
+        >
+          <option value="open">Open</option>
+          <option value="progressed">Progressed</option>
+          <option value="closed">Closed</option>
+        </select>
+
+        <button type="submit">Create Ticket</button>
+      </form>
 
       {tickets.map((ticket) => (
         <TicketCard key={ticket.id} ticket={ticket} />

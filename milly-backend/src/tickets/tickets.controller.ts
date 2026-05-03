@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Delete,
+  Put,
+  Body,
+  Param,
+} from '@nestjs/common';
 import { AppService } from './tickets.service';
 import { CreateTicketDto } from './dto/createTicket.dto';
 
@@ -14,5 +22,9 @@ export class AppController {
   @Post('tickets/')
   storeTicket(@Body() data: CreateTicketDto) {
     return this.appService.storeTicket(data);
+  }
+  @Delete('/tickets/:id')
+  deleteTicket(@Param('id') id: string) {
+    return this.appService.deleteTicket(Number(id));
   }
 }

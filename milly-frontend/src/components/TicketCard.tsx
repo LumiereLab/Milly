@@ -21,10 +21,6 @@ function TicketCard({ ticket }: TicketCardProps) {
       <h2>{ticket.title}</h2>
       <p>ID: {ticket.id}</p>
       <p>Status: {ticket.status}</p>
-
-      {/* <button onClick={() => onAdvancedStatus(ticket.id)}>
-        advance status
-      </button> */}
     </div>
   );
 }
