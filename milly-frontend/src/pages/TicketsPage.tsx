@@ -18,13 +18,21 @@ export function TicketsPage() {
       createdTicket,
     ]);
   } 
+
+  async function handleDeleteTicket(id: number){
+    await deleteTicket(id);
+    setTickets((previousTickets) => 
+    previousTickets.filter((ticket => ticket.id != id))
+  );
+
+  }
   return (
     <div style= {{ padding: '20px'}}>
       <h1>Tickets</h1>
       <TicketForm onCreateTicket={handleCreateTicket}/>
 
       {tickets.map((ticket) => (
-        <TicketCard key={ticket.id} ticket={ticket}/>
+        <TicketCard key={ticket.id} ticket={ticket} onDelete={handleDeleteTicket}/>
       ))}
 
     </div>

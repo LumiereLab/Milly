@@ -1,14 +1,11 @@
-type Ticket = {
-  id: number;
-  title: string;
-  status: 'open' | 'closed' | 'progressed';
-};
+import type { Ticket } from "../types/ticket";
 
 type TicketCardProps = {
   ticket: Ticket;
+  onDelete: (id: number) => void;
 };
 
-function TicketCard({ ticket }: TicketCardProps) {
+function TicketCard({ ticket, onDelete }: TicketCardProps) {
   return (
     <div
       style={{
@@ -21,6 +18,9 @@ function TicketCard({ ticket }: TicketCardProps) {
       <h2>{ticket.title}</h2>
       <p>ID: {ticket.id}</p>
       <p>Status: {ticket.status}</p>
+      <button onClick={() => onDelete(ticket.id)}>
+        delete 
+      </button>
     </div>
   );
 }
