@@ -4,9 +4,12 @@ export type Ticket = {
   id: number;
   title: string;
   status: TicketStatus;
+  description: string;
+  owner: number;
+  asignee: number;
+
 };
 
-export type CreateTicketPayload = {
-  title: string;
-  status: TicketStatus;
-};
+
+// Omit is a utility so I dont have to declare the same thing twice 
+export type CreateTicketPayload = Omit<Ticket,'id'>;
