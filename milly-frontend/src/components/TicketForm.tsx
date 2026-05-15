@@ -2,24 +2,29 @@ import { useState, type ChangeEvent, type SubmitEvent } from 'react';
 import type { CreateTicketPayload, TicketStatus } from '../types/ticket';
 
 type TicketFormProps = {
-  onCreateTicket: (payload: CreateTicketPayload) => void;
+  onCreateTicket: (payload: CreateTicketPayload) => Promise<void>;
 };
 
 export function TicketForm({ onCreateTicket }: TicketFormProps) {
   const [title, setTitle] = useState('');
   const [status, setStatus] = useState<TicketStatus>('open');
 
-  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+  async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    onCreateTicket({
-      title,
-      status,
-    })
+    try {
+      await onCreateTicket({
+        title,
+        status,
+      });
+      setTitle('');
+      setStatus('open');  
+    } catch {
+      //error is handled in Ticketspage where state lives 
+    }
+    
 
-
-    setTitle('');
-    setStatus('open');
+    
   }
 
   function handleTitleChange(event: ChangeEvent<HTMLInputElement>) {
@@ -34,6 +39,7 @@ export function TicketForm({ onCreateTicket }: TicketFormProps) {
         value={title}
         onChange={handleTitleChange}
       />
+      <button type="submit">create Ticket</button>
     </form>
   );
 }
