@@ -1,4 +1,4 @@
-import type { Ticket } from "../types/ticket";
+import type { Ticket } from "../../types/ticket";
 
 type TicketCardProps = {
   ticket: Ticket;

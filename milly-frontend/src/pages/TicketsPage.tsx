@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { createTicket, deleteTicket, fetchTickets } from '../api/ticketsApi';
-import { TicketForm } from '../components/TicketForm';
-import TicketCard from '../components/TicketCard';
+import { TicketForm } from '../components/Tickets/TicketForm';
+import TicketCard from '../components/Tickets/TicketCard';
 import type { CreateTicketPayload, Ticket } from '../types/ticket';
 
 

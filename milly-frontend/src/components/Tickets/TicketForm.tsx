@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent, type SubmitEvent } from 'react';
-import type { CreateTicketPayload, TicketStatus } from '../types/ticket';
+import type { CreateTicketPayload, TicketStatus } from '../../types/ticket';
 
 type TicketFormProps = {
   onCreateTicket: (payload: CreateTicketPayload) => Promise<void>;
