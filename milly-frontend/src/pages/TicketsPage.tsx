@@ -17,7 +17,7 @@ export function TicketsPage() {
   async function handleCreateTicket(payload: CreateTicketPayload) {
     setError(null); //clear any previous error before trying again 
     //try;catch cause await, otherwise error vanishes unhandled
-    try{
+    try {
       const createdTicket = await createTicket(payload);
       setTickets((previousTickets) => [
         ...previousTickets,
@@ -25,29 +25,29 @@ export function TicketsPage() {
       ]);
     }
     //instance of Error narrows type (set in our ticket api) // catch gives err:unknown by default, so we know the error has .message prop
-    catch(err){
-      if(err instanceof Error){
-        setError(err.message); 
+    catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
       }
     }
-    
-  } 
 
-  async function handleDeleteTicket(id: number){
+  }
+
+  async function handleDeleteTicket(id: number) {
     await deleteTicket(id);
-    setTickets((previousTickets) => 
-    previousTickets.filter((ticket => ticket.id != id))
-  );
+    setTickets((previousTickets) =>
+      previousTickets.filter((ticket => ticket.id != id))
+    );
 
   }
   return (
-    <div style= {{ padding: '20px'}}>
+    <div style={{ padding: '20px' }}>
       <h1>Tickets</h1>
-      <TicketForm onCreateTicket={handleCreateTicket}/>
+      <TicketForm onCreateTicket={handleCreateTicket} />
       {/* error line with {eror && ... is conditional rendering if error is null(falsy) React renders nothing*/}
-      {error && <p style={{ color: 'red' }}>{error}</p>}  
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       {tickets.map((ticket) => (
-        <TicketCard key={ticket.id} ticket={ticket} onDelete={handleDeleteTicket}/>
+        <TicketCard key={ticket.id} ticket={ticket} onDelete={handleDeleteTicket} />
       ))}
     </div>
   )

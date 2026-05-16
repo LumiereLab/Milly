@@ -9,7 +9,10 @@ datasource db {
 }
 
 model Ticket {
-  id     Int    @id @default(autoincrement())
-  title  String
-  status String
+  id          Int     @id @default(autoincrement())
+  title       String
+  status      String
+  description String? @db.Text
+  owner       Int?
+  asignee     Int?
 }

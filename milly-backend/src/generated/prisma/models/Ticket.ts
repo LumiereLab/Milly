@@ -28,56 +28,82 @@ export type AggregateTicket = {
 
 export type TicketAvgAggregateOutputType = {
   id: number | null
+  owner: number | null
+  asignee: number | null
 }
 
 export type TicketSumAggregateOutputType = {
   id: number | null
+  owner: number | null
+  asignee: number | null
 }
 
 export type TicketMinAggregateOutputType = {
   id: number | null
   title: string | null
   status: string | null
+  description: string | null
+  owner: number | null
+  asignee: number | null
 }
 
 export type TicketMaxAggregateOutputType = {
   id: number | null
   title: string | null
   status: string | null
+  description: string | null
+  owner: number | null
+  asignee: number | null
 }
 
 export type TicketCountAggregateOutputType = {
   id: number
   title: number
   status: number
+  description: number
+  owner: number
+  asignee: number
   _all: number
 }
 
 
 export type TicketAvgAggregateInputType = {
   id?: true
+  owner?: true
+  asignee?: true
 }
 
 export type TicketSumAggregateInputType = {
   id?: true
+  owner?: true
+  asignee?: true
 }
 
 export type TicketMinAggregateInputType = {
   id?: true
   title?: true
   status?: true
+  description?: true
+  owner?: true
+  asignee?: true
 }
 
 export type TicketMaxAggregateInputType = {
   id?: true
   title?: true
   status?: true
+  description?: true
+  owner?: true
+  asignee?: true
 }
 
 export type TicketCountAggregateInputType = {
   id?: true
   title?: true
   status?: true
+  description?: true
+  owner?: true
+  asignee?: true
   _all?: true
 }
 
@@ -171,6 +197,9 @@ export type TicketGroupByOutputType = {
   id: number
   title: string
   status: string
+  description: string | null
+  owner: number | null
+  asignee: number | null
   _count: TicketCountAggregateOutputType | null
   _avg: TicketAvgAggregateOutputType | null
   _sum: TicketSumAggregateOutputType | null
@@ -200,12 +229,18 @@ export type TicketWhereInput = {
   id?: Prisma.IntFilter<"Ticket"> | number
   title?: Prisma.StringFilter<"Ticket"> | string
   status?: Prisma.StringFilter<"Ticket"> | string
+  description?: Prisma.StringNullableFilter<"Ticket"> | string | null
+  owner?: Prisma.IntNullableFilter<"Ticket"> | number | null
+  asignee?: Prisma.IntNullableFilter<"Ticket"> | number | null
 }
 
 export type TicketOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  owner?: Prisma.SortOrderInput | Prisma.SortOrder
+  asignee?: Prisma.SortOrderInput | Prisma.SortOrder
   _relevance?: Prisma.TicketOrderByRelevanceInput
 }
 
@@ -216,12 +251,18 @@ export type TicketWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TicketWhereInput | Prisma.TicketWhereInput[]
   title?: Prisma.StringFilter<"Ticket"> | string
   status?: Prisma.StringFilter<"Ticket"> | string
+  description?: Prisma.StringNullableFilter<"Ticket"> | string | null
+  owner?: Prisma.IntNullableFilter<"Ticket"> | number | null
+  asignee?: Prisma.IntNullableFilter<"Ticket"> | number | null
 }, "id">
 
 export type TicketOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  owner?: Prisma.SortOrderInput | Prisma.SortOrder
+  asignee?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.TicketCountOrderByAggregateInput
   _avg?: Prisma.TicketAvgOrderByAggregateInput
   _max?: Prisma.TicketMaxOrderByAggregateInput
@@ -236,45 +277,69 @@ export type TicketScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Ticket"> | number
   title?: Prisma.StringWithAggregatesFilter<"Ticket"> | string
   status?: Prisma.StringWithAggregatesFilter<"Ticket"> | string
+  description?: Prisma.StringNullableWithAggregatesFilter<"Ticket"> | string | null
+  owner?: Prisma.IntNullableWithAggregatesFilter<"Ticket"> | number | null
+  asignee?: Prisma.IntNullableWithAggregatesFilter<"Ticket"> | number | null
 }
 
 export type TicketCreateInput = {
   title: string
   status: string
+  description?: string | null
+  owner?: number | null
+  asignee?: number | null
 }
 
 export type TicketUncheckedCreateInput = {
   id?: number
   title: string
   status: string
+  description?: string | null
+  owner?: number | null
+  asignee?: number | null
 }
 
 export type TicketUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  asignee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type TicketUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  asignee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type TicketCreateManyInput = {
   id?: number
   title: string
   status: string
+  description?: string | null
+  owner?: number | null
+  asignee?: number | null
 }
 
 export type TicketUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  asignee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type TicketUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  asignee?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type TicketOrderByRelevanceInput = {
@@ -287,30 +352,55 @@ export type TicketCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  owner?: Prisma.SortOrder
+  asignee?: Prisma.SortOrder
 }
 
 export type TicketAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  owner?: Prisma.SortOrder
+  asignee?: Prisma.SortOrder
 }
 
 export type TicketMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  owner?: Prisma.SortOrder
+  asignee?: Prisma.SortOrder
 }
 
 export type TicketMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  owner?: Prisma.SortOrder
+  asignee?: Prisma.SortOrder
 }
 
 export type TicketSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  owner?: Prisma.SortOrder
+  asignee?: Prisma.SortOrder
 }
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -327,6 +417,9 @@ export type TicketSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   id?: boolean
   title?: boolean
   status?: boolean
+  description?: boolean
+  owner?: boolean
+  asignee?: boolean
 }, ExtArgs["result"]["ticket"]>
 
 
@@ -335,9 +428,12 @@ export type TicketSelectScalar = {
   id?: boolean
   title?: boolean
   status?: boolean
+  description?: boolean
+  owner?: boolean
+  asignee?: boolean
 }
 
-export type TicketOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "status", ExtArgs["result"]["ticket"]>
+export type TicketOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "status" | "description" | "owner" | "asignee", ExtArgs["result"]["ticket"]>
 
 export type $TicketPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Ticket"
@@ -346,6 +442,9 @@ export type $TicketPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     id: number
     title: string
     status: string
+    description: string | null
+    owner: number | null
+    asignee: number | null
   }, ExtArgs["result"]["ticket"]>
   composites: {}
 }
@@ -718,6 +817,9 @@ export interface TicketFieldRefs {
   readonly id: Prisma.FieldRef<"Ticket", 'Int'>
   readonly title: Prisma.FieldRef<"Ticket", 'String'>
   readonly status: Prisma.FieldRef<"Ticket", 'String'>
+  readonly description: Prisma.FieldRef<"Ticket", 'String'>
+  readonly owner: Prisma.FieldRef<"Ticket", 'Int'>
+  readonly asignee: Prisma.FieldRef<"Ticket", 'Int'>
 }
     
 

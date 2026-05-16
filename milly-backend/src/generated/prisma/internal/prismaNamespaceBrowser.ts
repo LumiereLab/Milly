@@ -73,7 +73,10 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const TicketScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  status: 'status'
+  status: 'status',
+  description: 'description',
+  owner: 'owner',
+  asignee: 'asignee'
 } as const
 
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
@@ -87,9 +90,18 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
 export const TicketOrderByRelevanceFieldEnum = {
   title: 'title',
-  status: 'status'
+  status: 'status',
+  description: 'description'
 } as const
 
 export type TicketOrderByRelevanceFieldEnum = (typeof TicketOrderByRelevanceFieldEnum)[keyof typeof TicketOrderByRelevanceFieldEnum]
