@@ -15,4 +15,14 @@ model Ticket {
   description String? @db.Text
   owner       Int?
   asignee     Int?
+  board       Board   @relation(fields: [boardId], references: [id])
+  boardId     Int
+}
+
+model Board {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?  @db.Text
+  owner       Int      @default(0)
+  tickets     Ticket[]
 }

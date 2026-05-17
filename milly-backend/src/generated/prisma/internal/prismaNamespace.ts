@@ -384,7 +384,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Ticket: 'Ticket'
+  Ticket: 'Ticket',
+  Board: 'Board'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,7 +401,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "ticket"
+    modelProps: "ticket" | "board"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -470,6 +471,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Board: {
+      payload: Prisma.$BoardPayload<ExtArgs>
+      fields: Prisma.BoardFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BoardFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BoardFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardPayload>
+        }
+        findFirst: {
+          args: Prisma.BoardFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BoardFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardPayload>
+        }
+        findMany: {
+          args: Prisma.BoardFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardPayload>[]
+        }
+        create: {
+          args: Prisma.BoardCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardPayload>
+        }
+        createMany: {
+          args: Prisma.BoardCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.BoardDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardPayload>
+        }
+        update: {
+          args: Prisma.BoardUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardPayload>
+        }
+        deleteMany: {
+          args: Prisma.BoardDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BoardUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.BoardUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardPayload>
+        }
+        aggregate: {
+          args: Prisma.BoardAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBoard>
+        }
+        groupBy: {
+          args: Prisma.BoardGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BoardGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BoardCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BoardCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -515,10 +582,21 @@ export const TicketScalarFieldEnum = {
   status: 'status',
   description: 'description',
   owner: 'owner',
-  asignee: 'asignee'
+  asignee: 'asignee',
+  boardId: 'boardId'
 } as const
 
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
+
+
+export const BoardScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  owner: 'owner'
+} as const
+
+export type BoardScalarFieldEnum = (typeof BoardScalarFieldEnum)[keyof typeof BoardScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -544,6 +622,14 @@ export const TicketOrderByRelevanceFieldEnum = {
 } as const
 
 export type TicketOrderByRelevanceFieldEnum = (typeof TicketOrderByRelevanceFieldEnum)[keyof typeof TicketOrderByRelevanceFieldEnum]
+
+
+export const BoardOrderByRelevanceFieldEnum = {
+  title: 'title',
+  description: 'description'
+} as const
+
+export type BoardOrderByRelevanceFieldEnum = (typeof BoardOrderByRelevanceFieldEnum)[keyof typeof BoardOrderByRelevanceFieldEnum]
 
 
 
@@ -683,6 +769,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   ticket?: Prisma.TicketOmit
+  board?: Prisma.BoardOmit
 }
 
 /* Types for Logging */

@@ -18,8 +18,11 @@ function TicketCard({ ticket, onDelete }: TicketCardProps) {
       <h2>{ticket.title}</h2>
       <p>ID: {ticket.id}</p>
       <p>Status: {ticket.status}</p>
+      <p>Owner: {ticket.owner}</p>
+      <p>Asignee:{ticket.asignee}</p>
+      <p>Description: {ticket.description}</p>
       <button onClick={() => onDelete(ticket.id)}>
-        delete 
+        delete
       </button>
     </div>
   );

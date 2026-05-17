@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, isNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, isNumber, IsString, IsInt } from 'class-validator';
 export class CreateTicketDto {
   
   @IsString( {message: 'Title must be a string!'} )
@@ -17,4 +17,7 @@ export class CreateTicketDto {
   
   @IsNumber()
   asignee: number;
+
+  @IsInt()
+  boardId: number;
 }

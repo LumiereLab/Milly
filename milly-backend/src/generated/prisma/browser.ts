@@ -22,3 +22,8 @@ export * from './enums.js';
  * 
  */
 export type Ticket = Prisma.TicketModel
+/**
+ * Model Board
+ * 
+ */
+export type Board = Prisma.BoardModel

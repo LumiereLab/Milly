@@ -34,9 +34,6 @@ export async function createTicket(
 
 } 
   
-
-
-
 export async function deleteTicket( 
   id: number
 ): Promise<JSON>{

@@ -7,12 +7,12 @@ import {
   Body,
   Param,
 } from '@nestjs/common';
-import { AppService } from './tickets.service';
+import { TicketService } from './tickets.service';
 import { CreateTicketDto } from './dto/createTicket.dto';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: TicketService) {}
 
   @Get('tickets')
   getTIckets() {

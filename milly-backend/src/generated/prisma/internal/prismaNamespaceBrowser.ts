@@ -51,7 +51,8 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Ticket: 'Ticket'
+  Ticket: 'Ticket',
+  Board: 'Board'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -76,10 +77,21 @@ export const TicketScalarFieldEnum = {
   status: 'status',
   description: 'description',
   owner: 'owner',
-  asignee: 'asignee'
+  asignee: 'asignee',
+  boardId: 'boardId'
 } as const
 
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
+
+
+export const BoardScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  owner: 'owner'
+} as const
+
+export type BoardScalarFieldEnum = (typeof BoardScalarFieldEnum)[keyof typeof BoardScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -105,4 +117,12 @@ export const TicketOrderByRelevanceFieldEnum = {
 } as const
 
 export type TicketOrderByRelevanceFieldEnum = (typeof TicketOrderByRelevanceFieldEnum)[keyof typeof TicketOrderByRelevanceFieldEnum]
+
+
+export const BoardOrderByRelevanceFieldEnum = {
+  title: 'title',
+  description: 'description'
+} as const
+
+export type BoardOrderByRelevanceFieldEnum = (typeof BoardOrderByRelevanceFieldEnum)[keyof typeof BoardOrderByRelevanceFieldEnum]
 
