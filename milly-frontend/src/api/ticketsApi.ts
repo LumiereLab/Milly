@@ -23,12 +23,12 @@ export async function createTicket(
     body: JSON.stringify(payload),
   
   });
-  console.log(payload);
+
 //parsing the ValidationError from Backend, transform from array to sting is join
   if (!response.ok){
     const errorData: ApiValidationError =  await response.json();
-    console.log(response , errorData);
-    throw new Error(errorData.message.join());
+    console.log(errorData);
+    throw new Error();
   }
   return response.json();
 

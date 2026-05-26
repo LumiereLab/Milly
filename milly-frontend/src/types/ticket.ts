@@ -7,6 +7,7 @@ export type Ticket = {
   description: string;
   owner: number;
   asignee: number;
+  boardId: number;
 
 };
 

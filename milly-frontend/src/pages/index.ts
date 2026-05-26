@@ -1,2 +1,2 @@
 export { TicketsPage } from './TicketsPage';
-export { BoardPage } from './BoardPage';
+export { BoardsPage } from './KanbanBoardPage';
