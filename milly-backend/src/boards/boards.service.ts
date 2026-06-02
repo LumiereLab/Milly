@@ -4,21 +4,26 @@ import { CreateBoardDto } from "./dto/createBoard.dto";
 
 @Injectable()
 export class BoardsService {
-    constructor(private readonly prisma: PrismaService){}
+    constructor(private readonly prisma: PrismaService) { }
 
-    async getBoard(id: number){
+
+    async getBoards() {
+        return this.prisma.ticket.findMany();
+    }
+
+    async getBoard(id: number) {
         return this.prisma.board.findUniqueOrThrow({
-            where: {id}
+            where: { id }
         });
     }
 
-    async storeBoard(data: CreateBoardDto){
+    async storeBoard(data: CreateBoardDto) {
         return this.prisma.board.create({
             data,
         });
     }
 
-    async deleteBoard(id: number){
+    async deleteBoard(id: number) {
         return this.prisma.board.delete({
             where: { id },
         });

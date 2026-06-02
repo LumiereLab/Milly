@@ -12,10 +12,10 @@ import { CreateTicketDto } from './dto/createTicket.dto';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: TicketService) {}
+  constructor(private readonly appService: TicketService) { }
 
   @Get('tickets')
-  getTIckets() {
+  getTickets() {
     return this.appService.getTickets();
   }
 

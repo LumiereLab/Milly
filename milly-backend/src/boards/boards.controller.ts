@@ -4,21 +4,26 @@ import { CreateBoardDto } from "./dto/createBoard.dto";
 
 @Controller()
 export class AppController {
-    constructor(private readonly appService: BoardsService){}
+    constructor(private readonly appService: BoardsService) { }
+
+    @Get('boards')
+    getBoards() {
+        return this.appService.getBoards();
+    }
 
     @Get('/board/:id')
-    getBoard(@Param('id') id: string){
+    getBoard(@Param('id') id: string) {
         return this.appService.getBoard(Number(id));
     }
 
-    @Post('/board/new')
-    storeBoard(@Body()data: CreateBoardDto){
+    @Post('boards/')
+    storeBoard(@Body() data: CreateBoardDto) {
         return this.appService.storeBoard(data);
     }
 
-    @Delete('board/:id')
-        deleteBoard(@Param('id')id: string){        
+    @Delete('boards/:id')
+    deleteBoard(@Param('id') id: string) {
         return this.appService.deleteBoard(Number(id));
     }
-    
+
 }

@@ -16,9 +16,22 @@ const emptyForm: BoardFormState = {
 export function useBoardForm(onCreateBoard: (payload: CreateBoardPayload) => Promise<void>) {
     const [form, setForm] = useState<BoardFormState>(emptyForm);
 
-    function handleFieldChanges() { }
+    function handleFieldChanges(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        const { name, value } = event.target;
+        setForm(prev => ({ ...prev, [name]: value }));
+    }
 
-    async function handleSubmit() { }
+    async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+        event.preventDefault();
+        try {
+            await onCreateBoard({
+                ...form,
+                owner: Number(form.owner),
+            })
+        } catch {
+            //error handling in BoardsPage
+        }
+    }
 
     return { form, handleFieldChanges, handleSubmit }
 }
