@@ -10,6 +10,10 @@ services:
       - "3000:3000"
     environment:
       NODE_ENV: development
+      DATABASE_URL: "mysql://milly:milly@db:3306/milly"
+    depends_on:
+      - db
+
   db:
     image: mysql:8
     environment:
