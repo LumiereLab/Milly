@@ -1,17 +1,16 @@
+import 'dotenv/config';
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { PrismaClient } from '../generated/prisma/client';
-import { PrismaMariaDb } from '@prisma/adapter-mariadb';
+import { PrismaPg } from '@prisma/adapter-pg';
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {
   constructor() {
-    const adapter = new PrismaMariaDb({
-      host: 'localhost',
-      port: 3306,
-      user: 'root',
-      database: 'milly',
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+    const adapter = new PrismaPg({
+      connectionString: process.env.DATABASE_URL,
     });
-
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     super({ adapter });
   }
 
@@ -19,4 +18,3 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
     await this.$connect();
   }
 }
-
