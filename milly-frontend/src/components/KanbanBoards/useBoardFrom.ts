@@ -28,6 +28,7 @@ export function useBoardForm(onCreateBoard: (payload: CreateBoardPayload) => Pro
                 ...form,
                 owner: Number(form.owner),
             })
+            setForm(emptyForm);
         } catch {
             //error handling in BoardsPage
         }

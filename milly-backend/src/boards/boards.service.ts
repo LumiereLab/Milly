@@ -8,7 +8,7 @@ export class BoardsService {
 
 
     async getBoards() {
-        return this.prisma.ticket.findMany();
+        return this.prisma.board.findMany();
     }
 
     async getBoard(id: number) {

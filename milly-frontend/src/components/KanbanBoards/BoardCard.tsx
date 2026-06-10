@@ -24,6 +24,6 @@ function BoardCard({ board, onDelete }: BoardCardProps) {
 
 
         </div>
-    )
+    );
 }
 export default BoardCard;

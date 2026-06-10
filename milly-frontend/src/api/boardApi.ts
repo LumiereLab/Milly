@@ -7,7 +7,7 @@ export async function createBoard(payload: CreateBoardPayload): Promise<Board> {
     const response = await fetch(`${API_BASE_URL}/boards`, {
         method: 'POST',
         headers: {
-            'Conent-Type': 'application/json',
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload),
     });

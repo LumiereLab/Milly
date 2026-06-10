@@ -9,14 +9,15 @@ datasource db {
 }
 
 model Ticket {
-  id          Int     @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   title       String
   status      String
-  description String? @db.Text
+  description String?   @db.Text
   owner       Int?
   asignee     Int?
-  board       Board   @relation(fields: [boardId], references: [id])
+  board       Board     @relation(fields: [boardId], references: [id])
   boardId     Int
+  comments    Comment[]
 }
 
 model Board {
@@ -25,4 +26,11 @@ model Board {
   description String?  @db.Text
   owner       Int      @default(0)
   tickets     Ticket[]
+}
+
+model Comment {
+  id       Int    @id @default(autoincrement())
+  content  String
+  ticketId Int
+  ticket   Ticket @relation(fields: [ticketId], references: [id])
 }
