@@ -3,7 +3,7 @@ import { BoardsService } from "./boards.service";
 import { CreateBoardDto } from "./dto/createBoard.dto";
 
 @Controller()
-export class AppController {
+export class BoardController {
     constructor(private readonly appService: BoardsService) { }
 
     @Get('boards')

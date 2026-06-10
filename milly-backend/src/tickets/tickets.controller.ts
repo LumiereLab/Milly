@@ -11,7 +11,7 @@ import { TicketService } from './tickets.service';
 import { CreateTicketDto } from './dto/createTicket.dto';
 
 @Controller()
-export class AppController {
+export class TicketController {
   constructor(private readonly appService: TicketService) { }
 
   @Get('tickets')

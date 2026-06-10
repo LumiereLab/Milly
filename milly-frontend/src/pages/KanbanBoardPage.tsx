@@ -38,7 +38,7 @@ export function BoardsPage() {
     }
     return (
         <div style={{ padding: '20px' }}>
-            <h1>PlaceholderNameboard</h1>
+            <h1>Kanbanboards</h1>
             <BoardForm onCreateBoard={handleCreateBoard} />
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {boards.map((board) => (
