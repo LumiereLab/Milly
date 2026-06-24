@@ -11,13 +11,14 @@ datasource db {
 model Ticket {
   id          Int       @id @default(autoincrement())
   title       String
-  status      String
   description String?   @db.Text
   owner       Int?
   asignee     Int?
   board       Board     @relation(fields: [boardId], references: [id])
   boardId     Int
   comments    Comment[]
+  columnId    Int
+  column      Column    @relation(fields: [columnId], references: [id])
 }
 
 model Board {
@@ -26,6 +27,7 @@ model Board {
   description String?  @db.Text
   owner       Int      @default(0)
   tickets     Ticket[]
+  columns     Column[]
 }
 
 model Comment {
@@ -33,4 +35,13 @@ model Comment {
   content  String
   ticketId Int
   ticket   Ticket @relation(fields: [ticketId], references: [id])
+}
+
+model Column {
+  id       Int      @id @default(autoincrement())
+  name     String
+  position Int
+  boardId  Int
+  board    Board    @relation(fields: [boardId], references: [id])
+  tickets  Ticket[]
 }

@@ -15,5 +15,4 @@ export class CreateBoardDto {
     @IsString()
     description: string;
 
-
 }

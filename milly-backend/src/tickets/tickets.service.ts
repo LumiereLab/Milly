@@ -4,7 +4,7 @@ import { CreateTicketDto } from './dto/createTicket.dto';
 
 @Injectable()
 export class TicketService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async getTickets() {
     return this.prisma.ticket.findMany();
@@ -21,4 +21,6 @@ export class TicketService {
       where: { id },
     });
   }
-} 
+
+}
+

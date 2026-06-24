@@ -53,7 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Ticket: 'Ticket',
   Board: 'Board',
-  Comment: 'Comment'
+  Comment: 'Comment',
+  Column: 'Column'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -75,11 +76,11 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const TicketScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  status: 'status',
   description: 'description',
   owner: 'owner',
   asignee: 'asignee',
-  boardId: 'boardId'
+  boardId: 'boardId',
+  columnId: 'columnId'
 } as const
 
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
@@ -102,6 +103,16 @@ export const CommentScalarFieldEnum = {
 } as const
 
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
+
+
+export const ColumnScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  position: 'position',
+  boardId: 'boardId'
+} as const
+
+export type ColumnScalarFieldEnum = (typeof ColumnScalarFieldEnum)[keyof typeof ColumnScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -32,3 +32,8 @@ export type Board = Prisma.BoardModel
  * 
  */
 export type Comment = Prisma.CommentModel
+/**
+ * Model Column
+ * 
+ */
+export type Column = Prisma.ColumnModel

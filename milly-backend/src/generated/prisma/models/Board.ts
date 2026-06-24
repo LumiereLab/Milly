@@ -213,6 +213,7 @@ export type BoardWhereInput = {
   description?: Prisma.StringNullableFilter<"Board"> | string | null
   owner?: Prisma.IntFilter<"Board"> | number
   tickets?: Prisma.TicketListRelationFilter
+  columns?: Prisma.ColumnListRelationFilter
 }
 
 export type BoardOrderByWithRelationInput = {
@@ -221,6 +222,7 @@ export type BoardOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   owner?: Prisma.SortOrder
   tickets?: Prisma.TicketOrderByRelationAggregateInput
+  columns?: Prisma.ColumnOrderByRelationAggregateInput
 }
 
 export type BoardWhereUniqueInput = Prisma.AtLeast<{
@@ -232,6 +234,7 @@ export type BoardWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"Board"> | string | null
   owner?: Prisma.IntFilter<"Board"> | number
   tickets?: Prisma.TicketListRelationFilter
+  columns?: Prisma.ColumnListRelationFilter
 }, "id">
 
 export type BoardOrderByWithAggregationInput = {
@@ -261,6 +264,7 @@ export type BoardCreateInput = {
   description?: string | null
   owner?: number
   tickets?: Prisma.TicketCreateNestedManyWithoutBoardInput
+  columns?: Prisma.ColumnCreateNestedManyWithoutBoardInput
 }
 
 export type BoardUncheckedCreateInput = {
@@ -269,6 +273,7 @@ export type BoardUncheckedCreateInput = {
   description?: string | null
   owner?: number
   tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutBoardInput
+  columns?: Prisma.ColumnUncheckedCreateNestedManyWithoutBoardInput
 }
 
 export type BoardUpdateInput = {
@@ -276,6 +281,7 @@ export type BoardUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner?: Prisma.IntFieldUpdateOperationsInput | number
   tickets?: Prisma.TicketUpdateManyWithoutBoardNestedInput
+  columns?: Prisma.ColumnUpdateManyWithoutBoardNestedInput
 }
 
 export type BoardUncheckedUpdateInput = {
@@ -284,6 +290,7 @@ export type BoardUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner?: Prisma.IntFieldUpdateOperationsInput | number
   tickets?: Prisma.TicketUncheckedUpdateManyWithoutBoardNestedInput
+  columns?: Prisma.ColumnUncheckedUpdateManyWithoutBoardNestedInput
 }
 
 export type BoardCreateManyInput = {
@@ -356,10 +363,25 @@ export type BoardUpdateOneRequiredWithoutTicketsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.BoardUpdateToOneWithWhereWithoutTicketsInput, Prisma.BoardUpdateWithoutTicketsInput>, Prisma.BoardUncheckedUpdateWithoutTicketsInput>
 }
 
+export type BoardCreateNestedOneWithoutColumnsInput = {
+  create?: Prisma.XOR<Prisma.BoardCreateWithoutColumnsInput, Prisma.BoardUncheckedCreateWithoutColumnsInput>
+  connectOrCreate?: Prisma.BoardCreateOrConnectWithoutColumnsInput
+  connect?: Prisma.BoardWhereUniqueInput
+}
+
+export type BoardUpdateOneRequiredWithoutColumnsNestedInput = {
+  create?: Prisma.XOR<Prisma.BoardCreateWithoutColumnsInput, Prisma.BoardUncheckedCreateWithoutColumnsInput>
+  connectOrCreate?: Prisma.BoardCreateOrConnectWithoutColumnsInput
+  upsert?: Prisma.BoardUpsertWithoutColumnsInput
+  connect?: Prisma.BoardWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BoardUpdateToOneWithWhereWithoutColumnsInput, Prisma.BoardUpdateWithoutColumnsInput>, Prisma.BoardUncheckedUpdateWithoutColumnsInput>
+}
+
 export type BoardCreateWithoutTicketsInput = {
   title: string
   description?: string | null
   owner?: number
+  columns?: Prisma.ColumnCreateNestedManyWithoutBoardInput
 }
 
 export type BoardUncheckedCreateWithoutTicketsInput = {
@@ -367,6 +389,7 @@ export type BoardUncheckedCreateWithoutTicketsInput = {
   title: string
   description?: string | null
   owner?: number
+  columns?: Prisma.ColumnUncheckedCreateNestedManyWithoutBoardInput
 }
 
 export type BoardCreateOrConnectWithoutTicketsInput = {
@@ -389,6 +412,7 @@ export type BoardUpdateWithoutTicketsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner?: Prisma.IntFieldUpdateOperationsInput | number
+  columns?: Prisma.ColumnUpdateManyWithoutBoardNestedInput
 }
 
 export type BoardUncheckedUpdateWithoutTicketsInput = {
@@ -396,6 +420,53 @@ export type BoardUncheckedUpdateWithoutTicketsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   owner?: Prisma.IntFieldUpdateOperationsInput | number
+  columns?: Prisma.ColumnUncheckedUpdateManyWithoutBoardNestedInput
+}
+
+export type BoardCreateWithoutColumnsInput = {
+  title: string
+  description?: string | null
+  owner?: number
+  tickets?: Prisma.TicketCreateNestedManyWithoutBoardInput
+}
+
+export type BoardUncheckedCreateWithoutColumnsInput = {
+  id?: number
+  title: string
+  description?: string | null
+  owner?: number
+  tickets?: Prisma.TicketUncheckedCreateNestedManyWithoutBoardInput
+}
+
+export type BoardCreateOrConnectWithoutColumnsInput = {
+  where: Prisma.BoardWhereUniqueInput
+  create: Prisma.XOR<Prisma.BoardCreateWithoutColumnsInput, Prisma.BoardUncheckedCreateWithoutColumnsInput>
+}
+
+export type BoardUpsertWithoutColumnsInput = {
+  update: Prisma.XOR<Prisma.BoardUpdateWithoutColumnsInput, Prisma.BoardUncheckedUpdateWithoutColumnsInput>
+  create: Prisma.XOR<Prisma.BoardCreateWithoutColumnsInput, Prisma.BoardUncheckedCreateWithoutColumnsInput>
+  where?: Prisma.BoardWhereInput
+}
+
+export type BoardUpdateToOneWithWhereWithoutColumnsInput = {
+  where?: Prisma.BoardWhereInput
+  data: Prisma.XOR<Prisma.BoardUpdateWithoutColumnsInput, Prisma.BoardUncheckedUpdateWithoutColumnsInput>
+}
+
+export type BoardUpdateWithoutColumnsInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner?: Prisma.IntFieldUpdateOperationsInput | number
+  tickets?: Prisma.TicketUpdateManyWithoutBoardNestedInput
+}
+
+export type BoardUncheckedUpdateWithoutColumnsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner?: Prisma.IntFieldUpdateOperationsInput | number
+  tickets?: Prisma.TicketUncheckedUpdateManyWithoutBoardNestedInput
 }
 
 
@@ -405,10 +476,12 @@ export type BoardUncheckedUpdateWithoutTicketsInput = {
 
 export type BoardCountOutputType = {
   tickets: number
+  columns: number
 }
 
 export type BoardCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tickets?: boolean | BoardCountOutputTypeCountTicketsArgs
+  columns?: boolean | BoardCountOutputTypeCountColumnsArgs
 }
 
 /**
@@ -428,6 +501,13 @@ export type BoardCountOutputTypeCountTicketsArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.TicketWhereInput
 }
 
+/**
+ * BoardCountOutputType without action
+ */
+export type BoardCountOutputTypeCountColumnsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ColumnWhereInput
+}
+
 
 export type BoardSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -435,6 +515,7 @@ export type BoardSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   description?: boolean
   owner?: boolean
   tickets?: boolean | Prisma.Board$ticketsArgs<ExtArgs>
+  columns?: boolean | Prisma.Board$columnsArgs<ExtArgs>
   _count?: boolean | Prisma.BoardCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["board"]>
 
@@ -462,6 +543,7 @@ export type BoardSelectScalar = {
 export type BoardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "owner", ExtArgs["result"]["board"]>
 export type BoardInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tickets?: boolean | Prisma.Board$ticketsArgs<ExtArgs>
+  columns?: boolean | Prisma.Board$columnsArgs<ExtArgs>
   _count?: boolean | Prisma.BoardCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BoardIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -471,6 +553,7 @@ export type $BoardPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "Board"
   objects: {
     tickets: Prisma.$TicketPayload<ExtArgs>[]
+    columns: Prisma.$ColumnPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -872,6 +955,7 @@ readonly fields: BoardFieldRefs;
 export interface Prisma__BoardClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   tickets<T extends Prisma.Board$ticketsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Board$ticketsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  columns<T extends Prisma.Board$columnsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Board$columnsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ColumnPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1319,6 +1403,30 @@ export type Board$ticketsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.TicketScalarFieldEnum | Prisma.TicketScalarFieldEnum[]
+}
+
+/**
+ * Board.columns
+ */
+export type Board$columnsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Column
+   */
+  select?: Prisma.ColumnSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Column
+   */
+  omit?: Prisma.ColumnOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ColumnInclude<ExtArgs> | null
+  where?: Prisma.ColumnWhereInput
+  orderBy?: Prisma.ColumnOrderByWithRelationInput | Prisma.ColumnOrderByWithRelationInput[]
+  cursor?: Prisma.ColumnWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ColumnScalarFieldEnum | Prisma.ColumnScalarFieldEnum[]
 }
 
 /**

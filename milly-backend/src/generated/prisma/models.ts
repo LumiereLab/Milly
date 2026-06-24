@@ -11,4 +11,5 @@
 export type * from './models/Ticket.js'
 export type * from './models/Board.js'
 export type * from './models/Comment.js'
+export type * from './models/Column.js'
 export type * from './commonInputTypes.js'

@@ -386,7 +386,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Ticket: 'Ticket',
   Board: 'Board',
-  Comment: 'Comment'
+  Comment: 'Comment',
+  Column: 'Column'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -402,7 +403,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "ticket" | "board" | "comment"
+    modelProps: "ticket" | "board" | "comment" | "column"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -628,6 +629,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Column: {
+      payload: Prisma.$ColumnPayload<ExtArgs>
+      fields: Prisma.ColumnFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ColumnFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColumnPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ColumnFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColumnPayload>
+        }
+        findFirst: {
+          args: Prisma.ColumnFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColumnPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ColumnFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColumnPayload>
+        }
+        findMany: {
+          args: Prisma.ColumnFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColumnPayload>[]
+        }
+        create: {
+          args: Prisma.ColumnCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColumnPayload>
+        }
+        createMany: {
+          args: Prisma.ColumnCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ColumnCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColumnPayload>[]
+        }
+        delete: {
+          args: Prisma.ColumnDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColumnPayload>
+        }
+        update: {
+          args: Prisma.ColumnUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColumnPayload>
+        }
+        deleteMany: {
+          args: Prisma.ColumnDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ColumnUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ColumnUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColumnPayload>[]
+        }
+        upsert: {
+          args: Prisma.ColumnUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ColumnPayload>
+        }
+        aggregate: {
+          args: Prisma.ColumnAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateColumn>
+        }
+        groupBy: {
+          args: Prisma.ColumnGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ColumnGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ColumnCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ColumnCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -670,11 +745,11 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const TicketScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  status: 'status',
   description: 'description',
   owner: 'owner',
   asignee: 'asignee',
-  boardId: 'boardId'
+  boardId: 'boardId',
+  columnId: 'columnId'
 } as const
 
 export type TicketScalarFieldEnum = (typeof TicketScalarFieldEnum)[keyof typeof TicketScalarFieldEnum]
@@ -697,6 +772,16 @@ export const CommentScalarFieldEnum = {
 } as const
 
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
+
+
+export const ColumnScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  position: 'position',
+  boardId: 'boardId'
+} as const
+
+export type ColumnScalarFieldEnum = (typeof ColumnScalarFieldEnum)[keyof typeof ColumnScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -883,6 +968,7 @@ export type GlobalOmitConfig = {
   ticket?: Prisma.TicketOmit
   board?: Prisma.BoardOmit
   comment?: Prisma.CommentOmit
+  column?: Prisma.ColumnOmit
 }
 
 /* Types for Logging */
