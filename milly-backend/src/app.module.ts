@@ -6,11 +6,13 @@ import { BoardsService } from './boards/boards.service';
 import { BoardController } from './boards/boards.controller';
 import { CommentService } from './comments/comments.service';
 import { Commentcontroller } from './comments/comments.controller';
+import { ColumnsController } from './columns/columns.controller';
+import { ColumnsService } from './columns/columns.service';
 
 //TODO: Implement Comments under Tickets
 @Module({
   imports: [],
-  controllers: [TicketController, BoardController, Commentcontroller],
-  providers: [TicketService, PrismaService, BoardsService, CommentService],
+  controllers: [TicketController, BoardController, Commentcontroller, ColumnsController],
+  providers: [TicketService, PrismaService, BoardsService, CommentService, ColumnsService],
 })
 export class AppModule { }

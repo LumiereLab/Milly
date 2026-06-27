@@ -13,7 +13,15 @@ export class BoardsService {
 
     async getBoard(id: number) {
         return this.prisma.board.findUniqueOrThrow({
-            where: { id }
+            where: { id },
+            include: {
+                columns: {
+                    orderBy: { position: 'asc' },
+                    include: {
+                        tickets: true
+                    }
+                }
+            }
         });
     }
 

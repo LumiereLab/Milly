@@ -11,4 +11,19 @@ export class ColumnsController {
     getColumnsByBoard(@Param('id') id: string) {
         return this.columnsService.getColumnsByBoard(Number(id));
     }
+
+    @Post('boards/:id/column')
+    createColumn(@Param('id') id: string, @Body() body: CreateColumnDto) {
+        return this.columnsService.createColumn(body);
+    }
+
+    @Post('boards/:boardId/column/:id')
+    updateColumn(@Param('id') id: string, @Body() body: UpdateColumnDto) {
+        return this.columnsService.updateColumn(Number(id), body);
+    }
+
+    @Delete('boards/id/column/:id')
+    deleteColumn(@Param('id') id: string) {
+        return this.columnsService.deleteColumn(Number(id));
+    }
 }

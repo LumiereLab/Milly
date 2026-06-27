@@ -4,10 +4,10 @@ import { CreateColumnDto } from "./dto/createColumn.dto";
 import { UpdateColumnDto } from "./dto/updateColumn.dto";
 
 @Injectable()
-export class ColumnService {
+export class ColumnsService {
     constructor(private readonly prisma: PrismaService) { }
 
-    async getColumnByBoard(boardId: number) {
+    async getColumnsByBoard(boardId: number) {
         return this.prisma.column.findMany({
             where: { boardId },
             orderBy: { position: 'asc' },
