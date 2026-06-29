@@ -1,9 +1,9 @@
-export type TicketStatus = 'open' | 'progressed' | 'closed';
+import type { Column } from "./column";
 
 export type Ticket = {
   id: number;
   title: string;
-  status: TicketStatus;
+  status: Column['id'];
   description: string;
   owner: number;
   asignee: number;
@@ -13,4 +13,4 @@ export type Ticket = {
 
 
 // Omit is a utility so I dont have to declare the same thing twice 
-export type CreateTicketPayload = Omit<Ticket,'id'>;
+export type CreateTicketPayload = Omit<Ticket, 'id'>;

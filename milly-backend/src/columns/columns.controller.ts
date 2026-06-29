@@ -14,16 +14,16 @@ export class ColumnsController {
 
     @Post('boards/:id/column')
     createColumn(@Param('id') id: string, @Body() body: CreateColumnDto) {
-        return this.columnsService.createColumn(body);
+        return this.columnsService.createColumn(Number(id), body);
     }
 
-    @Post('boards/:boardId/column/:id')
+    @Patch('boards/:boardId/column/:id')
     updateColumn(@Param('id') id: string, @Body() body: UpdateColumnDto) {
         return this.columnsService.updateColumn(Number(id), body);
     }
 
-    @Delete('boards/id/column/:id')
-    deleteColumn(@Param('id') id: string) {
+    @Delete('column/:id')
+    deleteColumn(id: string) {
         return this.columnsService.deleteColumn(Number(id));
     }
 }

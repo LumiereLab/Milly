@@ -14,7 +14,7 @@ export class ColumnsService {
         });
     }
 
-    async createColumn(data: CreateColumnDto) {
+    async createColumn(boardId: number, data: CreateColumnDto) {
         return this.prisma.column.create({ data });
     }
 
