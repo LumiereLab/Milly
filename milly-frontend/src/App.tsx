@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { TicketsPage, BoardsPage } from './pages'
+import { KanbanBoardsPage, KanbanDetailsPage, TicketsPage } from './pages';
 //TODO: sinlge board view with its tickets
 //TODO: grid for status columns on detail view
 //TODO: sort Tickets into columns
@@ -10,7 +10,8 @@ function App() {
     <Router>
       <Routes>
         <Route path='/tickets' element={<TicketsPage />} />
-        <Route path='/boards' element={<BoardsPage />} />
+        <Route path='/boards' element={<KanbanBoardsPage />} />
+        <Route path='/board/:id' element={<KanbanDetailsPage/>} />
 
       </Routes>
     </Router>)

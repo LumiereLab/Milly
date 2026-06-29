@@ -3,7 +3,7 @@ import { BoardForm } from "../components/KanbanBoards/BoardForm";
 import type { Board, CreateBoardPayload } from "../types/board";
 import { createBoard, deleteBoard, fetchBoards } from "../api/boardApi";
 import BoardCard from "../components/KanbanBoards/BoardCard";
-export function BoardsPage() {
+export function KanbanBoardsPage() {
 
     // statefullness 
     const [boards, setBoards] = useState<Board[]>([]);
